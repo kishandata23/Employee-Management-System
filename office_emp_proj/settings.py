@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-&qiue71%jrtp-=1%xd-=9f5!c5km5sq9mg057g7$synq!=#j!%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','.now.sh']
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -78,10 +78,7 @@ WSGI_APPLICATION = "office_emp_proj.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    
 }
 
 
