@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from .models import Employee, Department, Role
 from datetime import datetime
 from django.db.models import Q
+from django.template import loader
 
 # Create your views here.
 def index(request):
@@ -28,7 +29,7 @@ def add_emp(request):
                  ,dept_id=dept,salary=salary,bonus=bonus,
                  role_id=role,phone=phone,hire_date=datetime.now())
         new_emp.save()
-        return HttpResponse("Employee added Successfully")
+        return render(request,'add_emp.html',{'msg': "Employee added successfully"})
     elif request.method=='GET':
          
          return render(request,'add_emp.html')
@@ -41,7 +42,8 @@ def remove_emp(request,emp_id=0):
         try:
             emp_to_be_removed=Employee.objects.get(id=emp_id)
             emp_to_be_removed.delete()
-            return HttpResponse('Employee removed successfully')
+            return render(request,'remove_emp.html',{'msg': "Employee removed successfully"})
+            # return HttpResponse('Employee removed successfully')
         except:
             return HttpResponse('Please enter a valid Employee ID')
     #       return render(request,'remove_emp.html',{'msg': "Employee removed successfully"})
@@ -77,3 +79,9 @@ def filter_emp(request):
         return HttpResponse("An Exception occured! Employee not added")
 
  
+def dept_name(request):
+    depts=Department.objects.all()
+    context={
+        'depts':depts
+    }
+    return render(request,'remove_emp.html', context)
